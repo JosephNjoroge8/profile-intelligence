@@ -44,13 +44,12 @@ RUN composer dump-autoload --optimize --no-dev --no-scripts
 
 # Set storage permissions
 RUN mkdir -p storage/logs storage/framework/{cache,sessions,views} bootstrap/cache database \
-    && chmod -R 777 storage bootstrap/cache database \
-    && chown -R nobody:nobody /var/www/html
+    && chown -R www-data:www-data storage bootstrap/cache database /var/www/html \
+    && chmod -R 755 storage bootstrap/cache database
 
 # Copy docker config files
 COPY docker/nginx.conf       /etc/nginx/nginx.conf
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY docker/php-fpm.conf     /usr/local/etc/php-fpm.d/www.conf
 COPY docker/start.sh         /start.sh
 RUN chmod +x /start.sh
 
