@@ -21,6 +21,7 @@ RUN apk add --no-cache \
     nginx \
     supervisor \
     libpq-dev \
+    sqlite \
     sqlite-dev \
     curl \
     zip \
