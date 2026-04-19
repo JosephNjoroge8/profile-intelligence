@@ -2,6 +2,11 @@
 
 set -e
 
+echo "==> Clearing Laravel caches..."
+php artisan config:clear || true
+php artisan cache:clear || true
+php artisan route:clear || true
+
 echo "==> Caching Laravel config and routes..."
 php artisan config:cache
 php artisan route:cache
